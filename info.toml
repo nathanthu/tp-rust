@@ -1,0 +1,299 @@
+format_version = 1
+
+welcome_message = """Bienvenue dans ce TP d'introduction à Rust !
+
+Quelques mots sur le fonctionnement de Rustlings :
+
+1. Le principe : résoudre des exercices. Chacun contient une erreur de
+   compilation ou de logique. À vous de la trouver et de la corriger !
+2. Ouvrez votre éditeur dans ce dossier. Rustlings affiche le chemin de
+   l'exercice en cours sous la barre de progression. Modifiez le fichier et
+   enregistrez : Rustlings relance l'exercice automatiquement. Quand tout est
+   corrigé, il vous propose de passer au suivant.
+3. Bloqué·e ? Tapez `h` pour afficher un indice.
+4. Lisez les messages du compilateur : ils sont très souvent la solution !"""
+
+final_message = """Bravo, vous avez terminé le TP ! 🦀
+
+Vous avez manipulé les bases de Rust et son concept le plus important :
+l'ownership. Pour continuer :
+- les Rustlings complets : https://github.com/rust-lang/rustlings
+- le livre officiel : https://doc.rust-lang.org/book/
+- la version française du livre : https://jimskapt.github.io/rust-book-fr/"""
+
+# INTRO
+
+[[exercises]]
+name = "intro1"
+dir = "00_intro"
+test = false
+skip_check_unsolved = true
+hint = """Tapez `n` pour passer à l'exercice suivant.
+Il faudra peut-être appuyer sur ENTRÉE après avoir tapé `n`."""
+
+[[exercises]]
+name = "intro2"
+dir = "00_intro"
+test = false
+hint = """Le compilateur nous indique qu'on s'est trompé dans le nom de la macro
+d'affichage. Il propose d'ailleurs une alternative."""
+
+# VARIABLES
+
+[[exercises]]
+name = "variables1"
+dir = "01_variables"
+test = false
+hint = """Il manque à la déclaration dans la fonction `main` un mot-clé nécessaire en
+Rust pour créer une nouvelle variable."""
+
+[[exercises]]
+name = "variables2"
+dir = "01_variables"
+test = false
+hint = """Le compilateur indique que Rust ne peut pas deviner le type de la variable `x`
+avec les informations données ici.
+
+Que se passe-t-il si vous ajoutez une annotation de type sur la première ligne ?
+Et si vous donnez une valeur à `x` ? Et si vous faites les deux ?
+Au fait, quel type devrait avoir `x` ?"""
+
+[[exercises]]
+name = "variables3"
+dir = "01_variables"
+test = false
+hint = """On a créé une variable dans `main` et on essaie de l'utiliser à la ligne
+suivante, mais elle n'a pas de valeur !
+
+On ne peut pas afficher quelque chose qui n'existe pas : donnez une valeur à `x`.
+
+C'est une erreur très facile à faire dans n'importe quel langage (pensez aux
+variables non initialisées en C), et le compilateur Rust l'attrape pour nous !"""
+
+[[exercises]]
+name = "variables4"
+dir = "01_variables"
+test = false
+hint = """En Rust, les variables sont immuables par défaut. Or ici, on essaie
+d'assigner une nouvelle valeur à `x` ! Il existe un mot-clé pour rendre une
+variable modifiable."""
+
+[[exercises]]
+name = "variables5"
+dir = "01_variables"
+test = false
+hint = """Dans `variables4`, on a vu comment rendre une variable modifiable avec un
+mot-clé. Malheureusement, cela ne suffit pas ici, car on veut assigner une
+valeur d'un AUTRE type à une variable existante. On a parfois envie de
+réutiliser un nom de variable, par exemple quand on convertit une valeur
+d'un type à un autre comme ici.
+
+Heureusement, Rust propose une solution : le masquage (« shadowing ») !
+Il suffit de redéclarer la variable. Plus d'infos dans le livre :
+https://doc.rust-lang.org/book/ch03-01-variables-and-mutability.html#shadowing"""
+
+[[exercises]]
+name = "variables6"
+dir = "01_variables"
+test = false
+hint = """En plus des variables, Rust propose les constantes.
+
+Les constantes sont toujours immuables. On les déclare avec `const` au lieu
+de `let`, et leur type doit TOUJOURS être annoté.
+
+Plus d'infos dans la section « Constants » du livre :
+https://doc.rust-lang.org/book/ch03-01-variables-and-mutability.html#constants"""
+
+# FONCTIONS
+
+[[exercises]]
+name = "functions1"
+dir = "02_fonctions"
+test = false
+hint = """La fonction `main` appelle une fonction qu'elle s'attend à trouver, mais qui
+n'existe pas. Elle doit s'appeler `call_me`, ne prendre aucun argument et ne
+rien renvoyer. Ça ressemble beaucoup à `main`, non ?"""
+
+[[exercises]]
+name = "functions2"
+dir = "02_fonctions"
+test = false
+hint = """Rust exige que toutes les parties de la signature d'une fonction soient
+annotées avec un type, or il manque le type de `num` dans `call_me`.
+Un entier non signé comme `u32` fera l'affaire."""
+
+[[exercises]]
+name = "functions3"
+dir = "02_fonctions"
+test = false
+hint = """Cette fois, la *déclaration* de la fonction est correcte, mais il y a un
+problème à l'endroit où on l'appelle."""
+
+[[exercises]]
+name = "functions4"
+dir = "02_fonctions"
+test = false
+hint = """Le message d'erreur pointe la fonction `sale_price` et indique qu'il attend
+un type après `->`. C'est là que se place le type de retour de la fonction.
+Inspirez-vous de la fonction `is_even` !"""
+
+[[exercises]]
+name = "functions5"
+dir = "02_fonctions"
+test = false
+hint = """C'est une erreur très courante, qui se corrige en supprimant un seul
+caractère. Elle vient du fait que Rust distingue les expressions et les
+instructions : une expression produit une valeur, alors qu'une instruction
+renvoie le type `()`, qui se comporte comme `void` en C/C++ ou Java.
+
+On veut renvoyer une valeur de type `i32` depuis `square`, mais la fonction
+renvoie `()`.
+
+Deux solutions possibles :
+1. Ajouter le mot-clé `return` devant `num * num;`
+2. Supprimer le point-virgule `;` après `num * num` (la façon idiomatique)"""
+
+# CONDITIONS
+
+[[exercises]]
+name = "if1"
+dir = "03_conditions"
+hint = """C'est faisable en une seule ligne !
+
+Quelques équivalents dans d'autres langages :
+- en C/C++ ou Java : `a > b ? a : b`
+- en Python : `a if a > b else b`
+
+À retenir en Rust :
+- la condition d'un `if` n'a pas besoin de parenthèses ;
+- `if`/`else` est une expression (elle renvoie une valeur) ;
+- chaque branche est suivie d'un bloc `{}`."""
+
+[[exercises]]
+name = "if2"
+dir = "03_conditions"
+hint = """Pour la première erreur : en Rust, chaque branche d'un `if` doit renvoyer
+le même type !
+
+Pour faire passer les tests, il vous faudra plusieurs conditions testant
+différentes valeurs. Lisez les tests pour savoir ce qu'ils attendent."""
+
+[[exercises]]
+name = "if3"
+dir = "03_conditions"
+hint = """En Rust, chaque branche d'une expression `if` doit renvoyer une valeur du
+même type. Vérifiez que le type est cohérent dans toutes les branches."""
+
+# QUIZ
+
+[[exercises]]
+name = "quiz1"
+dir = "04_quiz"
+hint = """Pas d'indice cette fois ;)"""
+
+# VECTEURS
+
+[[exercises]]
+name = "vecs1"
+dir = "05_vecs"
+hint = """En Rust, il existe deux façons simples de créer un vecteur :
+1. `Vec::new()` pour créer un vecteur vide, puis la méthode `push()` pour
+   le remplir ;
+2. la macro `vec![]`, en mettant les éléments entre les crochets. C'est plus
+   simple quand on connaît les valeurs initiales.
+
+Plus d'infos : https://doc.rust-lang.org/book/ch08-01-vectors.html"""
+
+[[exercises]]
+name = "vecs2"
+dir = "05_vecs"
+hint = """Utilisez la méthode `.push()` du vecteur pour y ajouter des éléments."""
+
+# OWNERSHIP
+
+[[exercises]]
+name = "move_semantics1"
+dir = "06_ownership"
+hint = """Vous avez l'erreur « cannot borrow `vec` as mutable, as it is not declared
+as mutable » sur la ligne où on ajoute un élément au vecteur, n'est-ce pas ?
+
+La correction consiste à ajouter un mot-clé, et ce n'est PAS sur la ligne du
+`push` (là où l'erreur est signalée).
+
+Bonus : essayez d'utiliser `vec0` après l'appel à `fill_vec()` dans le test.
+Que se passe-t-il ?"""
+
+[[exercises]]
+name = "move_semantics2"
+dir = "06_ownership"
+hint = """Au premier lancement, vous verrez une erreur « borrow of moved value ».
+En Rust, quand on passe un argument à une fonction et qu'il n'est pas
+renvoyé, on ne peut plus utiliser la variable d'origine : on dit qu'elle a
+été « déplacée » (move). En passant `vec0` à `fill_vec`, il est déplacé
+dans `vec1`, donc `vec0` n'est plus accessible.
+
+Vous pourriez créer une copie séparée des données de `vec0` et la passer
+à `fill_vec` à la place. En Rust, cela s'appelle cloner : `.clone()`."""
+
+[[exercises]]
+name = "move_semantics3"
+dir = "06_ownership"
+hint = """La différence avec les exercices précédents : la ligne `let mut vec = vec;`
+au début de `fill_vec` a disparu. Au lieu de la remettre, vous pouvez ajouter
+`mut` à un endroit pour rendre modifiable une liaison existante :)"""
+
+[[exercises]]
+name = "move_semantics4"
+dir = "06_ownership"
+hint = """Réfléchissez bien à la portée pendant laquelle chaque référence mutable
+est utilisée. Est-ce que ça aide de modifier `x` juste après avoir pris la
+référence mutable ?
+Plus d'infos dans la section « Mutable References » du livre :
+https://doc.rust-lang.org/book/ch04-02-references-and-borrowing.html#mutable-references"""
+
+[[exercises]]
+name = "move_semantics5"
+dir = "06_ownership"
+test = false
+hint = """La section « References and Borrowing » du livre vous aidera :
+https://doc.rust-lang.org/book/ch04-02-references-and-borrowing.html
+
+Premier problème : `get_char` prend la possession de la chaîne. `data` est
+donc déplacé dans `get_char` et ne peut plus être utilisé par
+`string_uppercase` ensuite.
+
+Une fois ce problème corrigé, il faudra aussi ajuster la signature de
+`string_uppercase`."""
+
+# CHAÎNES DE CARACTÈRES
+
+[[exercises]]
+name = "strings1"
+dir = "07_strings"
+test = false
+hint = """La fonction `current_favorite_color` renvoie actuellement une tranche de
+chaîne (`&str`) : un littéral écrit directement dans le code.
+
+Mais la signature promet une `String`. Il faut donc convertir le `&str` en
+`String`, par exemple avec la méthode `.to_string()` ou avec `String::from(...)`."""
+
+[[exercises]]
+name = "strings2"
+dir = "07_strings"
+test = false
+hint = """Bien sûr, on pourrait tout simplement changer `word` en tranche de chaîne…
+mais il existe un moyen d'ajouter un seul caractère dans le `if` pour que la
+`String` soit convertie en `&str`. (Pensez à l'emprunt !)"""
+
+# DÉFI FINAL
+
+[[exercises]]
+name = "defi_courses"
+dir = "08_defi"
+hint = """Reprenez les notions de la section ownership :
+- lire sans posséder : `&T`
+- modifier sans posséder : `&mut T`
+- modifier une valeur qu'on possède : la liaison doit être `mut`
+
+Pour le TODO 4 : une référence `&` vers `list` ne doit plus être utilisée au
+moment où on emprunte `list` en `&mut` (comme dans `move_semantics4`)."""
